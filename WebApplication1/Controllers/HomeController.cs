@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
 using AutoMapper;
+using PagedList.Mvc;
+using PagedList;
 
 namespace WebApplication1.Controllers
 {
@@ -44,10 +46,12 @@ namespace WebApplication1.Controllers
             //repo.Add(new UserProfile { FirstName = "Pavlo", LastName = "Mateishchuk", PhoneNumber = "+380937876647", EmailAddress = "pmateishchuk@gmail.com", HomeAddress = "Ivana Puliuia, Street 9", User = new User { Login = "pavlo"  } });
             #endregion
         }
-        public ActionResult Index(int page = 0, int items = 10)
+        public ActionResult Index(int page = 1)
         {
-            var users = Mapper.Map<IEnumerable<UserProfile>, List<IndexUserViewModel>>(repo.GetAllUsers().Skip(page * items).Take(items));
-            return View(users);
+            int pageSize = 5;
+            page = page < 1 ? 1 : page;
+            var users = Mapper.Map<IEnumerable<UserProfile>, List<IndexUserViewModel>>(repo.GetAllUsers());
+            return View(users.ToPagedList(page, pageSize));
         }
         public ActionResult Create()
         {

@@ -1,5 +1,6 @@
 ﻿@using WebApplication1.Models
-@model IEnumerable<IndexUserViewModel>
+@model PagedList.IPagedList<IndexUserViewModel>
+@using PagedList.Mvc
 @{
     Layout = null;
 }
@@ -10,6 +11,7 @@
 <head>
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/bootstrap.js"></script>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
@@ -41,22 +43,22 @@
                     <table class="table table-hover table-bordered table-responsive">
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Login)
+                                @Html.DisplayNameFor(model => model.First().Login)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.FirstName)
+                                @Html.DisplayNameFor(model => model.First().FirstName)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.LastName)
+                                @Html.DisplayNameFor(model => model.First().LastName)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.PhoneNumber)
+                                @Html.DisplayNameFor(model => model.First().PhoneNumber)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.EmailAddress)
+                                @Html.DisplayNameFor(model => model.First().EmailAddress)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.HomeAddress)
+                                @Html.DisplayNameFor(model => model.First().HomeAddress)
                             </th>
                             <th colspan="2">@Html.Label("Manipulations")</th>
                         </tr>
@@ -88,25 +90,9 @@
                                 </td>
                             </tr>
                         }
-                        <tr>
-                            <td colspan="7">
-                                <div class="row">
-                                    <div class="glyphicon-align-center">
-                                        <ul class="pagination">
-                                            <li><a href="#">«</a></li>
-                                            <li><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">4</a></li>
-                                            <li><a href="#">5</a></li>
-                                            <li><a href="#">»</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
                     </table>
+
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
                 </div>
             </div>
         </div> 
