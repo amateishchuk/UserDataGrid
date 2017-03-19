@@ -46,6 +46,7 @@ namespace WebApplication1.Controllers
             //repo.Add(new UserProfile { FirstName = "Pavlo", LastName = "Mateishchuk", PhoneNumber = "+380937876647", EmailAddress = "pmateishchuk@gmail.com", HomeAddress = "Ivana Puliuia, Street 9", User = new User { Login = "pavlo" } });
             #endregion
         }
+
         public ActionResult Index(int page = 1)
         {
             int pageSize = 5;
