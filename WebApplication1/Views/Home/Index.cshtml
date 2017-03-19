@@ -92,7 +92,15 @@
                         }
                     </table>
 
-                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    @Html.PagedListPager(Model, page => Url.Action("Index",
+                        new { page }),
+                        new PagedListRenderOptions
+                        {
+                            MaximumPageNumbersToDisplay = 5,
+                            DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+                            DisplayLinkToNextPage = PagedListDisplayMode.Never,
+                            DisplayEllipsesWhenNotShowingAllPageNumbers = false
+                        })
                 </div>
             </div>
         </div> 

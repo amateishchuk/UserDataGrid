@@ -41,9 +41,9 @@ namespace WebApplication1.Controllers
 
             #region Insert
             //repo.Add(new UserProfile { FirstName = "Andrii", LastName = "Mateishchuk", PhoneNumber = "+380937879947", EmailAddress = "amateishchuk@gmail.com", HomeAddress = "Ivana Puliuia, Street 9", User = new User { Login = "zenteyro" } });
-            //repo.Add(new UserProfile { FirstName = "Bogdan", LastName = "Mateishchuk", PhoneNumber = "+380937878847", EmailAddress = "bmateishchuk@gmail.com", HomeAddress = "Ivana Puliuia, Street 9", User = new User { Login = "bogdan"  } });
-            //repo.Add(new UserProfile { FirstName = "Ruslan", LastName = "Mateishchuk", PhoneNumber = "+380937877747", EmailAddress = "rmateishchuk@gmail.com", HomeAddress = "Ivana Puliuia, Street 9", User = new User { Login = "ruslan"  } });
-            //repo.Add(new UserProfile { FirstName = "Pavlo", LastName = "Mateishchuk", PhoneNumber = "+380937876647", EmailAddress = "pmateishchuk@gmail.com", HomeAddress = "Ivana Puliuia, Street 9", User = new User { Login = "pavlo"  } });
+            //repo.Add(new UserProfile { FirstName = "Bogdan", LastName = "Mateishchuk", PhoneNumber = "+380937878847", EmailAddress = "bmateishchuk@gmail.com", HomeAddress = "Ivana Puliuia, Street 9", User = new User { Login = "bogdan" } });
+            //repo.Add(new UserProfile { FirstName = "Ruslan", LastName = "Mateishchuk", PhoneNumber = "+380937877747", EmailAddress = "rmateishchuk@gmail.com", HomeAddress = "Ivana Puliuia, Street 9", User = new User { Login = "ruslan" } });
+            //repo.Add(new UserProfile { FirstName = "Pavlo", LastName = "Mateishchuk", PhoneNumber = "+380937876647", EmailAddress = "pmateishchuk@gmail.com", HomeAddress = "Ivana Puliuia, Street 9", User = new User { Login = "pavlo" } });
             #endregion
         }
         public ActionResult Index(int page = 1)
