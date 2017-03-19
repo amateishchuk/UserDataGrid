@@ -38,15 +38,15 @@ namespace WebApplication1.Controllers
             repo = r;
 
             #region Insert
-            //repo.Insert(new User { Login = "zenteyro", UserProfile = new UserProfile { FirstName = "Andrii", LastName = "Mateishchuk", PhoneNumber = "+380937879947", EmailAddress = "amateishchuk@gmail.com", HomeAddress = "Ivana Puliuia, Street 9" } });
-            //repo.Insert(new User { Login = "bogdan", UserProfile = new UserProfile { FirstName = "Bogdan", LastName = "Mateishchuk", PhoneNumber = "+380937878847", EmailAddress = "bmateishchuk@gmail.com", HomeAddress = "Ivana Puliuia, Street 9" } });
-            //repo.Insert(new User { Login = "ruslan", UserProfile = new UserProfile { FirstName = "Ruslan", LastName = "Mateishchuk", PhoneNumber = "+380937877747", EmailAddress = "rmateishchuk@gmail.com", HomeAddress = "Ivana Puliuia, Street 9" } });
-            //repo.Insert(new User { Login = "pavlo", UserProfile = new UserProfile { FirstName = "Pavlo", LastName = "Mateishchuk", PhoneNumber = "+380937876647", EmailAddress = "pmateishchuk@gmail.com", HomeAddress = "Ivana Puliuia, Street 9" } });
+            //repo.Add(new UserProfile { FirstName = "Andrii", LastName = "Mateishchuk", PhoneNumber = "+380937879947", EmailAddress = "amateishchuk@gmail.com", HomeAddress = "Ivana Puliuia, Street 9", User = new User { Login = "zenteyro" } });
+            //repo.Add(new UserProfile { FirstName = "Bogdan", LastName = "Mateishchuk", PhoneNumber = "+380937878847", EmailAddress = "bmateishchuk@gmail.com", HomeAddress = "Ivana Puliuia, Street 9", User = new User { Login = "bogdan"  } });
+            //repo.Add(new UserProfile { FirstName = "Ruslan", LastName = "Mateishchuk", PhoneNumber = "+380937877747", EmailAddress = "rmateishchuk@gmail.com", HomeAddress = "Ivana Puliuia, Street 9", User = new User { Login = "ruslan"  } });
+            //repo.Add(new UserProfile { FirstName = "Pavlo", LastName = "Mateishchuk", PhoneNumber = "+380937876647", EmailAddress = "pmateishchuk@gmail.com", HomeAddress = "Ivana Puliuia, Street 9", User = new User { Login = "pavlo"  } });
             #endregion
         }
-        public ActionResult Index()
+        public ActionResult Index(int page = 0, int items = 10)
         {
-            var users = Mapper.Map<IEnumerable<UserProfile>, List<IndexUserViewModel>>(repo.GetAllUsers());
+            var users = Mapper.Map<IEnumerable<UserProfile>, List<IndexUserViewModel>>(repo.GetAllUsers().Skip(page * items).Take(items));
             return View(users);
         }
         public ActionResult Create()

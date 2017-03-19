@@ -22,7 +22,7 @@
 
 
             <!-- Left offset 3 blocks and div with equals 6 blocks and situated in center (width)-->
-            <div class="col-xs-12">
+            <div class="col-md-12">
 
 
                 <!-- For addUserButton -->
@@ -31,14 +31,14 @@
                         <div id='UserContainer' class="modal-dialog">
                         </div>
                     </div>
-
-                    <button id='addUserButton' class="btn btn-default">Add User</button>
-
+                    <p>
+                        <button id='addUserButton' class="btn btn-success btn-block">Add User</button>
+                    </p>
                 </div>
 
                 <!-- For table data view of users-->
                 <div class="row">
-                    <table class="table table-hover">
+                    <table class="table table-hover table-bordered table-responsive">
                         <tr>
                             <th>
                                 @Html.DisplayNameFor(model => model.Login)
@@ -58,7 +58,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.HomeAddress)
                             </th>
-                            <th></th>
+                            <th colspan="2">@Html.Label("Manipulations")</th>
                         </tr>
 
                         @foreach (var item in Model)
@@ -88,23 +88,26 @@
                                 </td>
                             </tr>
                         }
+                        <tr>
+                            <td colspan="7">
+                                <div class="row">
+                                    <div class="glyphicon-align-center">
+                                        <ul class="pagination">
+                                            <li><a href="#">«</a></li>
+                                            <li><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li><a href="#">4</a></li>
+                                            <li><a href="#">5</a></li>
+                                            <li><a href="#">»</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
 
                     </table>
                 </div>
-
-                <!-- Pagination-->
-                <div class="row">
-                    <ul class="pagination">
-                        <li><a href="#">«</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">»</a></li>
-                    </ul>
-                </div>
-
             </div>
         </div> 
     </div>
