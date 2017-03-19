@@ -21,7 +21,7 @@ namespace WebApplication1.Util
             builder.RegisterControllers(typeof(HomeController).Assembly);
 
             // регистрируем споставление типов
-            builder.RegisterType<UserRepository>().As<IRepository>();
+            builder.RegisterType<UserRepository>().As<IRepository<UserProfile>>();
 
             // создаем новый контейнер с теми зависимостями, которые определены выше
             var container = builder.Build();

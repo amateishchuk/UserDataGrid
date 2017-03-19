@@ -14,5 +14,7 @@ namespace WebApplication1.Models
 
         public DbSet<User> Users { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
+
+        public System.Data.Entity.DbSet<WebApplication1.Models.IndexUserViewModel> IndexUserViewModels { get; set; }
     }
 }

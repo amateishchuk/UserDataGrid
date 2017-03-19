@@ -6,31 +6,31 @@ using System.Data.Entity;
 
 namespace WebApplication1.Models
 {
-    public class UserRepository : IDisposable, IRepository
+    public class UserRepository : IDisposable, IRepository<UserProfile>
     {
         UserContext db = new UserContext();
 
-        public IEnumerable<User> GetAllUsers()
+        public IEnumerable<UserProfile> GetAllUsers()
         {
-            return db.Users.Include(u=>u.UserProfile);
+            return db.UserProfiles.Include(u=>u.User);
         }
-        public void Insert(User u)
+        public void Add(UserProfile u)
         {
-            db.Users.Add(u);
+            db.UserProfiles.Add(u);
             db.SaveChanges();
         }
-        public User Select(int id)
+        public UserProfile GetUserById(int id)
         {
-            return db.Users.Include(u=>u.UserProfile).FirstOrDefault(u=>u.Id == id);
+            return db.UserProfiles.Include(u=>u.User).FirstOrDefault(u=>u.Id == id);
         }
-        public void Update(User u)
+        public void Edit(UserProfile u)
         {
             db.Entry(u).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
         }
-        public void Delete(User u)
+        public void Delete(UserProfile u)
         {
-            db.Users.Remove(u);
+            db.UserProfiles.Remove(u);
             db.SaveChanges();
         }        
         protected void Dispose(bool disposing)

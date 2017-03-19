@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Models
 {
-    public interface IRepository
+    public interface IRepository<T> : IDisposable
+        where T : class
     {
-        IEnumerable<User> GetAllUsers();
-        User Select(int id);
-        void Insert(User u);
-        void Update(User u);
-        void Delete(User u);
+        IEnumerable<T> GetAllUsers();
+        T GetUserById(int id);
+        void Add(T u);
+        void Edit(T u);
+        void Delete(T u);
     }
 }

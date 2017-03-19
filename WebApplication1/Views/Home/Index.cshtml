@@ -1,25 +1,140 @@
 ﻿@using WebApplication1.Models
-@model IEnumerable<User>
+@model IEnumerable<IndexUserViewModel>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <!-- Define Container -->
+    <div class="container">
+        <!-- Row -->
+        <div class="row">
 
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-<div class="row">
-    <table>
-        @foreach(var user in Model)
-        {
-            <tr>
-                <td>@user.Id</td>
-                <td>@user.Login</td>
-                <td>@user.UserProfile.FirstName</td>
-                <td>@user.UserProfile.LastName</td>
-                <td>@user.UserProfile.PhoneNumber</td>
-                <td>@user.UserProfile.EmailAddress</td>
-                <td>@user.UserProfile.HomeAddress</td>
-            </tr>
-        }
-    </table>
-</div>
+            <!-- Left offset 3 blocks and div with equals 6 blocks and situated in center (width)-->
+            <div class="col-xs-12">
+
+
+                <!-- For addUserButton -->
+                <div class="row">
+                    <div id='UserModal' class='modal fade' data-url='@Url.Action("Create")'>
+                        <div id='UserContainer' class="modal-dialog">
+                        </div>
+                    </div>
+
+                    <button id='addUserButton' class="btn btn-default">Add User</button>
+
+                </div>
+
+                <!-- For table data view of users-->
+                <div class="row">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Login)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FirstName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.LastName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PhoneNumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.EmailAddress)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.HomeAddress)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Login)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FirstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LastName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmailAddress)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HomeAddress)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "editUser btn btn-warning" }) 
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "deleteUser btn btn-danger" })
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+
+                <!-- Pagination-->
+                <div class="row">
+                    <ul class="pagination">
+                        <li><a href="#">«</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">»</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div> 
+    </div>
+    <script>
+        $(document).ready(function () {
+            $.ajaxSetup({ cache: false });
+            $('#addUserButton').click(function () {
+                var url = $('#UserModal').data('url');
+
+                $.get(url, function (data) {
+                    $('#UserContainer').html(data);
+                    $('#UserModal').modal('show');
+                });
+            });
+            $(".editUser").click(function (e) {
+                e.preventDefault();
+                $.get(this.href, function (data) {
+                    $('#UserContainer').html(data);
+                    $('#UserModal').modal('show');
+                });
+            });
+            $(".deleteUser").click(function (e) {
+                e.preventDefault();
+                $.get(this.href, function (data) {
+                    $('#UserContainer').html(data);
+                    $('#UserModal').modal('show');
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
