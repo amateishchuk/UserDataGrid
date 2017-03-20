@@ -66,9 +66,15 @@ namespace WebApplication1.Controllers
                 UserProfile user = Mapper.Map<CreateUserViewModel, UserProfile>(model);
                 repo.Add(user);
                 
-                return RedirectToAction("Index");
+                return PartialView("Success", "The user was successfully registered");
             }
-            return HttpNotFound();
+            return PartialView("Create", model);
+        }
+        [HttpPost]
+        public ActionResult Success(string message)
+        {
+
+            return PartialView(message);
         }
 
         public ActionResult Edit(int? id)

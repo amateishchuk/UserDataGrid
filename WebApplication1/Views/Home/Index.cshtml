@@ -30,7 +30,7 @@
                 <!-- For addUserButton -->
                 <div class="row">
                     <div id='UserModal' class='modal fade' data-url='@Url.Action("Create")'>
-                        <div id='UserContainer' class="modal-dialog">
+                        <div id='UserContainer' class="modal-dialog modal-lg">
                         </div>
                     </div>
                     <p>
@@ -105,6 +105,8 @@
             </div>
         </div> 
     </div>
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>   
     <script>
         $(document).ready(function () {
             $.ajaxSetup({ cache: false });
