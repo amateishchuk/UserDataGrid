@@ -14,5 +14,6 @@ namespace WebApplication1.Models
         void Add(T u);
         void Edit(T u);
         void Delete(T u);
+        bool IsAvailableLogin(string login);
     }
 }

@@ -14,6 +14,10 @@ namespace WebApplication1.Models
         {
             return db.UserProfiles.Include(u=>u.User);
         }
+        public bool IsAvailableLogin(string login)
+        {
+            return db.Users.Where(u => u.Login == login).Count() > 0 ? false : true;
+        }
         public void Add(UserProfile u)
         {
             db.UserProfiles.Add(u);
@@ -49,5 +53,7 @@ namespace WebApplication1.Models
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        
     }
 }

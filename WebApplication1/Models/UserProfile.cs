@@ -27,8 +27,7 @@ namespace WebApplication1.Models
 
         [EmailAddress]
         public string EmailAddress { get; set; }
-
-        [Required]
+        
         public string HomeAddress { get; set; }
 
         public User User { get; set; }

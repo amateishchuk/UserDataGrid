@@ -68,7 +68,7 @@ namespace WebApplication1.Controllers
                 
                 return RedirectToAction("Index");
             }
-            return View(model);
+            return HttpNotFound();
         }
 
         public ActionResult Edit(int? id)
@@ -91,7 +91,7 @@ namespace WebApplication1.Controllers
                 repo.Edit(user);
                 return RedirectToAction("Index");
             }
-            return View(model);
+            return HttpNotFound();
         }
         [HttpGet]
         public ActionResult Delete(int? id)
@@ -107,6 +107,19 @@ namespace WebApplication1.Controllers
             UserProfile user = repo.GetUserById(model.Id);
             repo.Delete(user);
             return RedirectToAction("Index");
+        }
+
+
+        [HttpGet]
+        public JsonResult CheckAvialableLogin(string login)
+        {
+            bool result;
+            if (String.IsNullOrWhiteSpace(login)) result = false;
+            else
+            {
+                result = repo.IsAvailableLogin(login);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }
