@@ -9,6 +9,7 @@
 
 <html>
 <head>
+    <link rel="stylesheet" href="~/Content/Site.css" />
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <link rel="stylesheet" href="~/Content/bootstrap.css" />
     <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
@@ -30,7 +31,7 @@
                 <!-- For addUserButton -->
                 <div class="row">
                     <div id='UserModal' class='modal fade' data-url='@Url.Action("Create")'>
-                        <div id='UserContainer' class="modal-dialog modal-lg">
+                        <div id='UserContainer' class="modal-dialog">
                         </div>
                     </div>
                     <p>
@@ -85,7 +86,7 @@
                                     @Html.DisplayFor(modelItem => item.HomeAddress)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "editUser btn btn-warning" }) 
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "editUser btn btn-warning" })
                                     @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "deleteUser btn btn-danger" })
                                 </td>
                             </tr>
@@ -103,10 +104,12 @@
                         })
                 </div>
             </div>
-        </div> 
+        </div>
     </div>
 
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>   
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <script>
         $(document).ready(function () {
             $.ajaxSetup({ cache: false });

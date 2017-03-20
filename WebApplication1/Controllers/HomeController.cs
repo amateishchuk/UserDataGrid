@@ -84,6 +84,7 @@ namespace WebApplication1.Controllers
             // Настройка AutoMapper
             // Выполняем сопоставление
             EditUserViewModel user = Mapper.Map<UserProfile, EditUserViewModel>(repo.GetUserById(id.Value));
+            if (user == null) return PartialView("Success", "Server error. User is apsend in database");
             return PartialView(user);
             
         }
@@ -95,9 +96,9 @@ namespace WebApplication1.Controllers
                 // Выполняем сопоставление
                 UserProfile user = Mapper.Map<EditUserViewModel, UserProfile>(model);
                 repo.Edit(user);
-                return RedirectToAction("Index");
+                return PartialView("Success", "The user information was successfully updated");
             }
-            return HttpNotFound();
+            return PartialView("Edit", model);
         }
         [HttpGet]
         public ActionResult Delete(int? id)
@@ -105,6 +106,7 @@ namespace WebApplication1.Controllers
             if (id == null)
                 return HttpNotFound();
             IndexUserViewModel user = Mapper.Map<UserProfile, IndexUserViewModel>(repo.GetUserById(id.Value));
+            if (user == null) return PartialView("Success", "Server error. User is apsend in database");
             return PartialView(user);
         }
         [HttpPost]
@@ -112,19 +114,14 @@ namespace WebApplication1.Controllers
         {
             UserProfile user = repo.GetUserById(model.Id);
             repo.Delete(user);
-            return RedirectToAction("Index");
+            return PartialView("Success", "The user was successfully deleted from database");
         }
 
 
         [HttpGet]
-        public JsonResult CheckAvialableLogin(string login)
+        public JsonResult IsAvailableLogin(string login)
         {
-            bool result;
-            if (String.IsNullOrWhiteSpace(login)) result = false;
-            else
-            {
-                result = repo.IsAvailableLogin(login);
-            }
+            var result = !(login == "amateishchuk");
             return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
